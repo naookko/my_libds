@@ -62,3 +62,35 @@ bool push_back(Vector* vector, void* element){
 	vector->data[vector->size++] = element;
 	return true;
 }
+
+bool insert(Vector* vector, void* element, size_t index){
+	if(vector == NULL){
+		printf("The vector is NULL\n");
+		return false;
+	}
+
+	if(index > vector->size){
+		printf("Index out of bounds\n");
+		return false;
+	}
+	
+	if(vector->size == vector->capacity){
+		void** temp = realloc(vector->data, (vector->size * 2) * sizeof(void*));
+		if(temp == NULL){
+			printf("Looks like there's no more space to expand the vector\n");
+			return false;		
+		}
+		vector->data = temp;
+		vector->capacity *= 2;
+	}
+
+	for(size_t i = vector->size; i > index; i--){
+		vector->data[i] = vector->data[i-1];
+	}
+
+	vector->data[index] = element;
+
+	vector->size++;
+
+	return true;
+}
