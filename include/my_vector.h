@@ -5,13 +5,15 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-struct Vector{
+typedef struct Vector{
 	void **data;
 	size_t capacity;
 	size_t size;
 } Vector;
 
 Vector* my_vector();
+void* front(Vector* vector);
+void* back(Vector* vector);
 
 #endif
 

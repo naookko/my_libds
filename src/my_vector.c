@@ -1,8 +1,8 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include"vector.h"
+#include"my_vector.h"
 
-#define INITIAL_CAPACITY = 4
+#define INITIAL_CAPACITY 4
 
 Vector* my_vector(){
 	Vector* newVector = malloc(sizeof(Vector));
@@ -23,4 +23,22 @@ Vector* my_vector(){
 	newVector->size = 0;
 
 	return newVector;
+}
+
+void* front(Vector* vector){
+	if(vector == NULL || vector ->size == 0){
+		printf("The vector is NULL or is empty\n");
+		return NULL;
+	}
+
+	return vector->data[0];
+}
+
+void* back(Vector* vector){
+	if(vector == NULL || vector ->size == 0){
+		printf("The vector is NULL or is empty\n");
+		return NULL;
+	}
+
+	return vector->data[vector->size-1];
 }
