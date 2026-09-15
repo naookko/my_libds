@@ -94,3 +94,25 @@ bool insert(Vector* vector, void* element, size_t index){
 
 	return true;
 }
+
+bool erase(Vector* vector, size_t index){
+	if(vector == NULL){
+		printf("The vector is NULL\n");
+		return false;
+	}
+
+	if(index >= vector->size){
+		printf("Index out of bounds\n");
+		return false;
+	}
+
+	for(size_t i = index; i < vector->size-1; i++){
+		vector->data[i] = vector->data[i+1];
+	}
+
+	vector->size--;
+	
+	vector->data[size] = NULL;
+
+	return true;
+}
