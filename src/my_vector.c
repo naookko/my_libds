@@ -26,7 +26,7 @@ Vector* my_vector(){
 }
 
 void* front(Vector* vector){
-	if(vector == NULL || vector ->size == 0){
+	if(vector == NULL || vector->size == 0){
 		printf("The vector is NULL or is empty\n");
 		return NULL;
 	}
@@ -35,10 +35,30 @@ void* front(Vector* vector){
 }
 
 void* back(Vector* vector){
-	if(vector == NULL || vector ->size == 0){
+	if(vector == NULL || vector->size == 0){
 		printf("The vector is NULL or is empty\n");
 		return NULL;
 	}
 
 	return vector->data[vector->size-1];
+}
+
+bool push_back(Vector* vector, void* element){
+	if(vector == NULL){
+		printf("The vector is NULL\n");
+		return false;
+	}
+	
+	if(vector->size == vector->capacity){
+		void** temp = realloc(vector->data, (vector->size * 2) * sizeof(void*));
+		if(temp == NULL){
+			printf("Looks like there's no more space to expand the vector\n");
+			return false;		
+		}
+		vector->data = temp;
+		vector->capacity *= 2;
+	}
+
+	vector->data[vector->size++] = element;
+	return true;
 }

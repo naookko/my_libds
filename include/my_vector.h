@@ -14,6 +14,7 @@ typedef struct Vector{
 Vector* my_vector();
 void* front(Vector* vector);
 void* back(Vector* vector);
+bool push_back(Vector *, void* element);
 
 #endif
 
