@@ -112,7 +112,7 @@ bool erase(Vector* vector, size_t index){
 
 	vector->size--;
 	
-	vector->data[size] = NULL;
+	vector->data[vector->size] = NULL;
 
 	return true;
 }
