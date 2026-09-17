@@ -17,6 +17,7 @@ void* back(Vector* vector);
 bool push_back(Vector* vector, void* element);
 bool insert(Vector* vector, void* element, size_t index);
 bool erase(Vector* vector, size_t index);
+bool pop_back(Vector* vector);
 
 #endif
 

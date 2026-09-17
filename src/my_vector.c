@@ -116,3 +116,18 @@ bool erase(Vector* vector, size_t index){
 
 	return true;
 }
+
+bool pop_back(Vector* vector){
+	if(vector == NULL){
+		printf("The vector is NULL\n");
+		return false;
+	}
+	if(vector->size == 0){
+		printf("The vector is empty");
+		return false;
+	}
+
+	vector->data[--vector->size] = NULL;
+
+	return true;
+}
