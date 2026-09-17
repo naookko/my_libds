@@ -16,3 +16,16 @@ Node* my_list(){
 	return new_list;
 }
 
+void traverse(Node* list){
+	if(list == NULL){
+		printf("Error: the list is NULL\n");
+		return;
+	}
+
+	Node* aux = list;	
+
+	while(aux != NULL){
+		printf("> %s\n", (char*)aux->data); //Currently just accept strings. But it can change to receive a callback and print different kind of data.
+		aux = aux->next;
+	}
+}
