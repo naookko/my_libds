@@ -1,5 +1,5 @@
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -std=c11 -Include -g
+CFLAGS := -Wall -Wextra -Werror -std=c11 -Iinclude -g
 LDFLAGS := 
 
 SRC_DIR := src
@@ -8,7 +8,7 @@ TEST_DIR := test
 BUILD_DIR := build
 
 SRCS := $(wildcard $(SRC_DIR)/*.c)
-OBJS := $(patsubst $(BUILD_DIR)/*.c, $(BUILD_DIR)/*.o, $(SRCS))
+OBJS := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
 TEST_SRC := $(TEST_DIR)/main.c
 TEST_OBJ := $(BUILD_DIR)/test_main.o
@@ -24,6 +24,9 @@ $(TARGET): $(OBJS) $(TEST_OBJ)
 	@echo "Build done: ./$(TARGET)"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(TEST_OBJ): $(TEST_SRC) | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR):
