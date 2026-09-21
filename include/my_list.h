@@ -10,6 +10,7 @@ typedef struct Node{
 } Node;
 
 Node* my_list();
-void traverse(Node* list);
+void traverse_list(Node* list);
+void insert_list(Node** list, void* element);
 
 #endif
