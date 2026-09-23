@@ -62,3 +62,22 @@ void insert_list(Node** list, void* element){
 
 	return;
 }
+
+void delete_list(Node** list, void* element){
+	if(list == NULL || *list == NULL){
+		printf("Error: List is NULL");
+		return;
+	}	
+
+	Node** current = list;
+
+	while((*current) != NULL){
+		if((*current)->data == element){
+			Node* temp = (*current);
+			*current = (*current)->next;
+			free(temp);
+			return;
+		}
+		current = &((*current)->next);
+	}
+}
