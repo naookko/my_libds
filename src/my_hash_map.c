@@ -1,5 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
+#include<string.h>
 #include"my_hash_map.h"
 
 #define MAP_CAPACITY 101
@@ -34,4 +35,36 @@ size_t my_hash_function(const void* data){
 		hash = ((hash << 5) + hash) + c;
 	}
 	return hash % MAP_CAPACITY;
+}
+
+void put(HashMap* map, void* key, void* data){
+	if(map == NULL || key == NULL || data == NULL){
+		printf("Couldn't save the data");
+		return;
+	}
+	
+	size_t index = my_hash_function(key);
+
+	NodeHashMap* aux = map->buckets[index];
+	
+	while(aux != NULL){
+		if(strcmp((const char*) aux->key, (const char*)key) == 0){
+			aux->data = data;
+			return;
+		}
+		aux = aux->next;
+	}
+
+	NodeHashMap* newNode = (NodeHashMap*)malloc(sizeof(NodeHashMap));
+
+	if(newNode == NULL){
+		printf("Couldn't create the new entry on the map");
+		return;
+	}
+
+	newNode->key = key;
+	newNode->data = data;
+
+	newNode->next = map->buckets[index];
+	map->buckets[index] = newNode;
 }
