@@ -39,7 +39,7 @@ size_t my_hash_function(const void* data){
 
 void put(HashMap* map, void* key, void* data){
 	if(map == NULL || key == NULL || data == NULL){
-		printf("Couldn't save the data");
+		printf("Couldn't save the data\n");
 		return;
 	}
 	
@@ -58,7 +58,7 @@ void put(HashMap* map, void* key, void* data){
 	NodeHashMap* newNode = (NodeHashMap*)malloc(sizeof(NodeHashMap));
 
 	if(newNode == NULL){
-		printf("Couldn't create the new entry on the map");
+		printf("Couldn't create the new entry on the map\n");
 		return;
 	}
 
@@ -67,4 +67,24 @@ void put(HashMap* map, void* key, void* data){
 
 	newNode->next = map->buckets[index];
 	map->buckets[index] = newNode;
+}
+
+void* get(HashMap* map, void* key){
+	if(map == NULL || key == NULL){
+		printf("Couldn't access the map or key\n");
+		return NULL;
+	}
+	
+	size_t index = my_hash_function(key);
+
+	NodeHashMap* aux = map->buckets[index];
+
+	while(aux != NULL){
+		if(strcmp((char*)aux->key, (char*)key) == 0){
+			return aux->data;
+		}
+		aux = aux->next;
+	}
+
+	return NULL;
 }
