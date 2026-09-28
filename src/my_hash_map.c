@@ -25,3 +25,13 @@ HashMap* my_hashmap(){
 
 	return newHashMap;
 }
+
+size_t my_hash_function(const void* data){
+	const char* str = (const char*)data;
+	size_t hash = 5381;
+	int c;
+	while((c = *str++)){
+		hash = ((hash << 5) + hash) + c;
+	}
+	return hash % MAP_CAPACITY;
+}

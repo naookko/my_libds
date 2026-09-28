@@ -19,5 +19,6 @@ typedef struct HashMap{
 } HashMap;
 
 HashMap* my_hashmap();
+size_t my_hash_function(const void* data);
 
 #endif
